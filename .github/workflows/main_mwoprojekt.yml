@@ -32,6 +32,21 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
+          
+      - name: Create an Azure DevOps Bug Workitem when a workflow fails
+        uses: stefanstranger/azuredevops-bug-action@1.1
+        if: failure()
+        with:
+          OrganizationName: "milosz-mertka-mwo"
+          PAT: "PAT"
+          ProjectName: "pw-mwo-lab-project"
+          AreaPath: "pw-mwo-lab-project"
+          IterationPath: "pw-mwo-lab-project"
+          GithubToken: "GithubToken"
+          WorkflowFileName: "integration.yml"
+        env:
+          PAT: ${{ secrets.PAT }}
+          GithubToken: ${{ secrets.githubtoken }}
 
   deploy:
     runs-on: windows-latest
