@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    environment:
+      - 'POSTGRES_DB=pamiw'
+      - 'POSTGRES_PASSWORD=pamiw'
+      - 'POSTGRES_USER=pamiw'
+    ports:
+      - '5432:5432'

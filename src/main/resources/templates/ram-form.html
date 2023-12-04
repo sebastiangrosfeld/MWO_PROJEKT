@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ram</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5 text-danger">Ram</h1>
+    <form th:action="@{'/rams/' + ${ramForm.name == null ? 'create' : 'update/' + ramForm.name}}"
+          th:method="${ramForm.name == null ? 'POST' : 'PUT'}"
+          th:object="${ramForm}">
+        <div class="mb-3">
+            <label class="form-label" for="name">Nazwa</label>
+            <input class="form-control" id="name" th:field="*{name}" type="text">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="ramcapacity">Pamięć RAM [GB]</label>
+            <input class="form-control" id="ramcapacity" th:field="*{ramCapacity}" type="number">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="memoryrate">Taktowanie [MHz]</label>
+            <input class="form-control" id="memoryrate" th:field="*{memoryRate}" type="number">
+        </div>
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-secondary" th:href="@{/rams}">Anuluj</a>
+            <button class="btn btn-primary ms-3" type="submit">Zapisz</button>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

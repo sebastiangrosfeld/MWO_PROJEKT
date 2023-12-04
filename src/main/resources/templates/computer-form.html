@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Komputer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5 text-danger">Komputer</h1>
+    <form th:action="@{'/computers/' + ${computerForm.name == null ? 'create' : 'update/' + computerForm.name}}"
+          th:method="${computerForm.name == null ? 'POST' : 'PUT'}"
+          th:object="${computerForm}">
+        <div class="mb-3">
+            <label class="form-label" for="name">Nazwa</label>
+            <input class="form-control" id="name" th:field="*{name}" type="text">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="type">Typ</label>
+            <input class="form-control" id="type" th:field="*{type}" type="text">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="enclosurename">Nazwa obudowy</label>
+            <input class="form-control" id="enclosurename" th:field="*{enclosureName}" type="text">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="cpuname">Nazwa Cpu</label>
+            <input class="form-control" id="cpuname" th:field="*{cpuName}" type="text">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="ramname">Ram</label>
+            <select class="form-select" id="ramname" th:field="*{ramName}">
+                <option selected value="">Wybierz Ram</option>
+                <option th:each="ram : ${rams}" th:text="${ram.name}"
+                        th:value="${ram.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="harddiskcapacity">Pojemność dysku [GB]</label>
+            <input class="form-control" id="harddiskcapacity" th:field="*{hardDiskCapacity}" type="number">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="gpuname">Nazwa Gpu:</label>
+            <select class="form-select" id="gpuname" th:field="*{gpuName}">
+                <option selected value="">Wybierz Gpu</option>
+                <option th:each="gpu : ${gpus}" th:text="${gpu.name}"
+                        th:value="${gpu.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="powersupply">Pobór mocy</label>
+            <input class="form-control" id="powersupply" th:field="*{powerSupply}" type="number">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="price">Cena</label>
+            <input class="form-control" id="price" th:field="*{price}" type="number">
+        </div>
+        <div class="d-flex justify-content-end">
+            <a class="btn btn-secondary" th:href="@{/computers}">Anuluj</a>
+            <button class="btn btn-primary ms-3" type="submit">Zapisz</button>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
